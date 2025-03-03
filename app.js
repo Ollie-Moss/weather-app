@@ -7,7 +7,7 @@ require("dotenv").config();
 // Static variables
 const app = express();
 const PORT = process.env.PORT || 3000;
-const API_KEY = "your_openweather_api_key";
+const API_KEY = process.env.API_KEY || "your_openweather_api_key";
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 // Express Setup
@@ -45,7 +45,7 @@ app.post("/weather", async (req, res) => {
 
         const weather = {
             city: weatherData.name,
-            temperature: weatherData.main.temperature,
+            temperature: weatherData.main.temp,
             description: weatherData.weather[0].description,
             icon: `http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`,
         };
